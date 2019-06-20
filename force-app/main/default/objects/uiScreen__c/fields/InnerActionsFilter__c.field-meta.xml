@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InnerActionsFilter__c</fullName>
+    <description>Will be used to render routes in Magic Wand Menu</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Will be used to render routes in Magic Wand Menu</inlineHelpText>
+    <label>Inner Actions Filter</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

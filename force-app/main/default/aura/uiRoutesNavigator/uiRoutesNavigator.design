@@ -1,0 +1,12 @@
+<design:component  label="Navigator">
+    <design:attribute name="isAdmin"  label="Is Admin ?" />
+    <design:attribute name="isShaded"  label="Shaded" />
+    <design:attribute name="isCompact"  label="Compact" />
+    <design:attribute name="navStyle"  label="Navbar Style" datasource="VERTICAL,HORIZONTAL"/>
+    <design:attribute name="fromOrder"  label="From Order Number" description="Filter the routes based on their order"/>
+    <design:attribute name="toOrder"  label="To Order Number" description="Optional filter by groupNames" />
+    <design:attribute name="sortOrder" label="Sort Order" datasource="DESC,ASC"/>
+    <design:attribute name="visibleRoutes"  label="Visible Routes" />
+    
+    
+</design:component>

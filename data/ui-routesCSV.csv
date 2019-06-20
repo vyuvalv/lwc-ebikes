@@ -1,0 +1,18 @@
+Name,uiScreenId__r.ScreenCode__c,ContextIdField__c,Label__c,Group__c,LightningIcon__c,NavigationType__c,RelationshipApiName__c,FilterName__c,Mode__c,ObjectApiName__c,IsNavigation__c,TargetURL__c,MergedParameters__c,Active__c,PageName__c
+ShowRelationshipProcess,SC-0003,Id,Show Relationship Information,Details,action:view_relationship,,,,view,Account,false,,,true,
+ChatterAction,SC-0009,Id,Chatter Action,Standard,standard:data_integration_hub,,,,view,,false,,,true,
+NavToAccountList,,Id,Account ListView,Navigation,standard:account,ListView,,Recent,view,Account,true,,,true,
+2-AccountDetail,SC-0002,Id,Account Detail (Fields),Details,action:new_contact,,,,,,false,,,true,
+IntegrationAction,SC-0007,Id,Integration Action,Custom,action:question_post_action,WebPage,,Recent,view,Account,false,,,true,
+RelatedAttachments,,Id,Related Attachments,Navigation,standard:contact,RelatedList,CombinedAttachments,,view,Account,true,,,true,
+AccountEdit,,Id,Edit Account,Actions,action:edit,RecordPage,,,edit,Account,true,,%Id%,true,
+Google Search,,Id,Google Search,Web Pages,action:google_news,WebPage,,,view,,true,http://www.google.com,?q=%Name%,true,
+connectionTree,SC-0008,Id,Connections,Custom,action:new_group,WebPage,,Recent,view,Account,false,,,true,
+ShowListViews,SC-0006,Id,Show List Views,Details,action:manage_perm_sets,,,,view,,false,,,true,
+DashboardVF,SC-0001,Id,VF Dashboard,Visualforce Pages,action:share_file,,,,view,Account,false,,,true,uiProcessTabs
+RelatedContact,,Id,Related Contacts,Navigation,standard:contact,RelatedList,Contacts,,view,Account,true,,,true,
+ContactRecordHome,,Id,Contact TAB,Navigation,standard:event,RecordHome,,,view,Contact,true,,,true,
+AccountClone,,Id,Clone Account,Actions,action:clone,RecordPage,,,clone,Account,true,,%Id%,true,
+EditFieldsComponent,SC-0005,Id,Edit Account Detail,Details,action:new_case,,,,view,,false,,,true,
+RouteListView,,,Route List View,Quick Links,standard:calibration,ListView,,Admin,view,uiRouteAction__c,true,,,true,
+Home,,,Home,Lightning Pages,standard:home,LightningPage,,,view,,true,,,true,home

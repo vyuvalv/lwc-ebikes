@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContextIdField__c</fullName>
+    <defaultValue>&#39;Id&#39;</defaultValue>
+    <description>Which Field to use from current Context Object as a Context Id</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Which Field to use from current Context Object as a Context Id</inlineHelpText>
+    <label>ContextId Field</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

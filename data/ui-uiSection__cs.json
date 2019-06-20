@@ -1,0 +1,134 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef1"
+            },
+            "Name": "AccountDetails",
+            "Title__c": "Details",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordForm",
+            "BodyParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"%Id%\",\r\n\"fieldNamesString\":\"Name,Type\",\r\n\"mode\":\"view\",\r\n\"header\":\"Hello\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef3",
+            "Order__c": 1
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef2"
+            },
+            "Name": "ExistingIntegrationService",
+            "Title__c": "Transformer",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:ncDataTransformer",
+            "BodyParameters__c": "{\r\n\"recordId\":\"0010E00000Rwd6NQAR\",\r\n\"defaultDataServiceId\":\"a040E000002fhDcQAI\",\r\n\"sObjectName\":\"Account\",\r\n\"buttonLabel\":\"Send\",\r\n\"buttonIcon\":\"utility:sync\",\r\n\"buttonVariant\":\"destructive\",\r\n\"isAdmin\":false,\r\n\"title\":\"Integration\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef3",
+            "Order__c": 3
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef3"
+            },
+            "Name": "NewIntegrationService",
+            "Title__c": "New Integration",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:ncDataTransformer",
+            "BodyParameters__c": "{\r\n\"recordId\":\"0010E00000Rwd6NQAR\",\r\n\"defaultDataServiceId\":\"none\",\r\n\"sObjectName\":\"Account\",\r\n\"buttonLabel\":\"Send\",\r\n\"buttonIcon\":\"utility:sync\",\r\n\"buttonVariant\":\"destructive\",\r\n\"isAdmin\":true,\r\n\"title\":\"Integration\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef3",
+            "Order__c": 3
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef4"
+            },
+            "Name": "PersonalDetails",
+            "Title__c": "Personal Details",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordForm",
+            "BodyParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"%Id%\",\r\n\"fieldNamesString\":\"Name,Type,OwnerId,AnnualRevenue,Website,NumberOfEmployees\",\r\n\"mode\":\"view\",\r\n\"header\":\"Relationship Information\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef4",
+            "Order__c": 1
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef5"
+            },
+            "Name": "OtherDetails",
+            "Title__c": "Relationship Details",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordForm",
+            "BodyParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"%Id%\",\r\n\"fieldNamesString\":\"Name,Type,Fax,Ownership\",\r\n\"mode\":\"view\",\r\n\"header\":\"Relationship Details\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef4",
+            "Order__c": 2
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef6"
+            },
+            "Name": "ReviewInformation",
+            "Title__c": "Relationship Details",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordForm",
+            "BodyParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"%Id%\",\r\n\"fieldNamesString\":\"Name,Phone,Fax,Industry\",\r\n\"mode\":\"view\",\r\n\"header\":\"Review Information\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef4",
+            "Order__c": 3
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef7"
+            },
+            "Name": "AccountList",
+            "Title__c": "Accounts",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordList",
+            "BodyParameters__c": "{\r\n\"sObjectName\":\"Account\",\r\n\"listName\":\"Recent\",\r\n\"rows\":\"5\",\r\n\"showSearchBar\":\"true\",\r\n\"showActionBar\":false,\r\n\"enableInlineEdit\":false,\r\n\"showRowLevelActions\":false\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef5",
+            "Order__c": 1
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef8"
+            },
+            "Name": "ContactsList",
+            "Title__c": "Contacts",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordList",
+            "BodyParameters__c": "{\r\n\"sObjectName\":\"Contact\",\r\n\"listName\":\"Recent\",\r\n\"rows\":5,\r\n\"showSearchBar\":true,\r\n\"showActionBar\":false,\r\n\"enableInlineEdit\":false,\r\n\"showRowLevelActions\":true\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef5",
+            "Order__c": 1
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef9"
+            },
+            "Name": "ChatterCompany",
+            "Title__c": "Company",
+            "Type__c": "LightningComponent",
+            "PageName__c": "forceChatter:feed",
+            "BodyParameters__c": "{\r\n\"type\":\"Company\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef8",
+            "Order__c": 1
+        },
+        {
+            "attributes": {
+                "type": "uiSection__c",
+                "referenceId": "uiSection__cRef10"
+            },
+            "Name": "ChatterGroups",
+            "Title__c": "Chatter",
+            "Type__c": "LightningComponent",
+            "PageName__c": "forceChatter:feed",
+            "BodyParameters__c": "{\r\n\"type\":\"Groups\"\r\n}",
+            "ParentScreenId__c": "@uiScreen__cRef8",
+            "Order__c": 2
+        }
+    ]
+}

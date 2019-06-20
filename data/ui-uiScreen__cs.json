@@ -1,0 +1,89 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef1"
+            },
+            "Name": "OtherAccountDetails",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordForm",
+            "InnerActionsFilter__c": "Order__c > 2001 AND Order__c < 2003",
+            "BodyParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"0010E00000Rwd6NQAR\",\r\n\"fieldNamesString\":\"Name,Industry,Description,Phone\",\r\n\"mode\":\"edit\",\r\n\"header\":\"Other Details\"\r\n}"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef2"
+            },
+            "Name": "AccountPersonalDetails",
+            "Type__c": "LightningComponent",
+            "PageName__c": "c:uiRecordForm",
+            "InnerActionsFilter__c": "Order__c > 2000 AND Order__c < 2005",
+            "BodyParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"%Id%\",\r\n\"fieldNamesString\":\"Name,Type,BillingCity,AnnualRevenue\",\r\n\"mode\":\"view\",\r\n\"header\":\"Hello\"\r\n}"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef3"
+            },
+            "Name": "MyComponents",
+            "Type__c": "Process",
+            "PageName__c": "none",
+            "ProgressBarType__c": "base"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef4"
+            },
+            "Name": "RelationshipInformationProcess",
+            "Type__c": "Process",
+            "PageName__c": "none",
+            "InnerActionsFilter__c": "Order__c > 2003 AND Order__c < 2010",
+            "ProgressBarType__c": "path"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef5"
+            },
+            "Name": "ShowListViews",
+            "Type__c": "Process",
+            "PageName__c": "none",
+            "ProgressBarType__c": "base",
+            "BodyParameters__c": "{}"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef6"
+            },
+            "Name": "connectionTreeScreen",
+            "Type__c": "LightningComponent",
+            "PageName__c": "ncTree:ncTree",
+            "BodyParameters__c": "{\r\n\"recordId\":\"%Id%\",\r\n\"title\":\"Connnections\",\r\n\"MetadataLabel\":\"Default\",\r\n\"PageSize\":\"5\",\r\n\"isAdmin\":\"YES\",\r\n\"defaultDirection\":\"ALL\"\r\n}"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef7"
+            },
+            "Name": "AccountDashboardVF",
+            "Type__c": "Visualforce",
+            "PageName__c": "DashboardVF",
+            "BodyParameters__c": "?Id=%Id%"
+        },
+        {
+            "attributes": {
+                "type": "uiScreen__c",
+                "referenceId": "uiScreen__cRef8"
+            },
+            "Name": "ChatterView",
+            "Type__c": "Process",
+            "PageName__c": "none",
+            "ProgressBarType__c": "base",
+            "BodyParameters__c": "{}"
+        }
+    ]
+}

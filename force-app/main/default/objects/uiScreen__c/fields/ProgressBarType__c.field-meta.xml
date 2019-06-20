@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProgressBarType__c</fullName>
+    <description>Will control the style of the progress bar (base or path)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Will control the style of the progress bar (base or path)</inlineHelpText>
+    <label>Progress Bar Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>base</fullName>
+                <default>true</default>
+                <label>base</label>
+            </value>
+            <value>
+                <fullName>path</fullName>
+                <default>false</default>
+                <label>path</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

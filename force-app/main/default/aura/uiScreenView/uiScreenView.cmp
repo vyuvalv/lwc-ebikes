@@ -1,0 +1,63 @@
+<aura:component controller="UIScreenController" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global" >
+<!-- Standard parameters based on Record Page -->
+<aura:attribute name="recordId"  type="String" access="public" />
+<aura:attribute name="sObjectName"  type="String" access="public" /> 
+<!-- Component UI Design Input -->
+ <aura:attribute name="uiScreenId"  type="String" access="global"/>
+ <aura:attribute name="screenTitle"  type="String" access="public"/>
+ <aura:attribute name="pageHeight"  type="Integer" access="global" default="500"/>
+ <aura:attribute name="vfHost"  type="String" access="public"/>
+ <aura:attribute name="routesFilter"  type="String" access="public"/>
+<!-- Optional Component UI Design Input -->
+ <aura:attribute name="screenType"  type="String" access="public"/>
+ <aura:attribute name="iconName"  type="String" access="public" default=""/>
+ <!-- Server output -->
+ <aura:attribute name="screenObject"  type="Object" access="public"/>
+ <aura:attribute name="pageName"  type="String" access="public" default="DashboardVF"/>
+ <aura:attribute name="bodyParameters"  type="String" access="public"/>
+ <aura:attribute name="showSpinner" type="Boolean" access="public" default="true"/>
+ <aura:attribute name="isAdmin" type="Boolean" access="public" default="true"/>
+
+ <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+ <aura:handler name="change" value="{! v.uiScreenId }" action="{! c.doGetScreen }" />
+
+ <aura:handler event="c:uiRouteClickEvent" action="{!c.doSetScreen}"/>
+
+ <div aura:id="errorMsg" id="errorMsg"></div>
+
+ <lightning:card class="slds-theme_shade" iconName="{!v.iconName}" variant="Narrow" title="{!v.screenTitle}">
+        <aura:set attribute="actions">
+        <div class="slds-grid">
+        <aura:if isTrue="{!v.isAdmin}">
+                <a class="slds-p-horizontal_small">
+                        <lightning:icon title="Edit" size="small" iconName="utility:edit" onclick="{!c.doEditScreen}" />
+                </a>   
+        </aura:if>
+        <aura:if isTrue="{! !empty(v.routesFilter) }">
+        <c:uiRoutesNavigator sortOrder="ASC" recordId="{!v.recordId}" routeFilterString="{!v.routesFilter}" isAdmin="false" navStyle="MagicWand"/>
+        </aura:if>
+        </div>
+        </aura:set>
+
+ <lightning:layout verticalAlign="center"  multipleRows="false" >
+	<lightning:layoutItem class="slds-theme_default" largeDeviceSize="12"  mediumDeviceSize="12"  padding="horizontal-small"  size="12"  smallDeviceSize="12" >
+        
+        <aura:if isTrue="{!v.showSpinner}">
+                        <lightning:spinner variant="brand" size="large" aura:id="mySpinner" alternativeText="Retrieving Screen..."/>
+        <aura:set attribute="else">
+
+        <aura:if isTrue="{! and(v.screenType == 'Visualforce',!empty(v.vfHost)) }">
+                <c:uiVisualforceDisplay pageName="{!v.pageName}" vfHost="{!v.vfHost}" pageHeight="{!v.pageHeight}"/>
+        </aura:if>
+
+        <aura:if isTrue="{! or(v.screenType == 'LightningComponent', v.screenType == 'Process')}">
+            <div aura:id="compDiv" ></div>  
+        </aura:if>
+       
+        </aura:set>
+        </aura:if>
+        </lightning:layoutItem>
+</lightning:layout>
+</lightning:card>
+
+</aura:component>	

@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "uiRouteAction__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "ui-uiRouteAction__cs.json"
+        ]
+    }
+]

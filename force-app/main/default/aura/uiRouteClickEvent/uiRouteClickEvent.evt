@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Route Action Click Event">
+        <aura:attribute name="routeData" type="Object"/>
+
+</aura:event>

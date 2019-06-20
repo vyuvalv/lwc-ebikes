@@ -1,0 +1,58 @@
+<aura:component extends="forceCommunity:navigationMenuBase" implements="forceCommunity:availableForAllPageTypes">
+
+        <aura:attribute name="showAppName" type="Boolean" default="false" />
+        <aura:attribute name="rtl" type="Boolean" default="false" />
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:layout horizontalAlign="space"  multipleRows="true" >
+        <lightning:layoutItem largeDeviceSize="12"  mediumDeviceSize="12" size="12" >
+            <div aura:id="menuDirection" class="slds-context-bar">
+                    <div class="slds-context-bar__primary">
+                    <div class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover">
+                    <div class="slds-context-bar__icon-action">
+                    <button class="slds-button slds-icon-waffle_container slds-context-bar__button" title="Description of the icon when needed">
+                        <span class="slds-icon-waffle">
+                            <span class="slds-r1"></span>
+                            <span class="slds-r2"></span>
+                            <span class="slds-r3"></span>
+                            <span class="slds-r4"></span>
+                            <span class="slds-r5"></span>
+                            <span class="slds-r6"></span>
+                            <span class="slds-r7"></span>
+                            <span class="slds-r8"></span>
+                            <span class="slds-r9"></span>
+                        </span>
+                        <span class="slds-assistive-text">Open App Launcher</span>
+                    </button>
+                    </div>
+                    <aura:if isTrue="{!v.showAppName}">
+                        <span class="slds-context-bar__label-action slds-context-bar__app-name">
+                            <span class="slds-truncate" title="App Name">App Name</span>
+                        </span>
+                    </aura:if>
+                    </div>
+                    </div>
+                    <nav class="slds-context-bar__secondary" role="navigation">
+        
+                    <ul class="slds-grid" onclick="{!c.onClick}">
+                        <aura:iteration items="{!v.menuItems}" var="item" >
+                                <li class="slds-context-bar__item slds-is-active">
+                                    <a class="slds-context-bar__label-action" data-menu-item-id="{!item.id}" href="">
+                                    <span class="slds-assistive-text">Current Page:</span>
+                                    <aura:if isTrue="{!item.label == 'Home'}">
+                                        <span class="slds-truncate" title="{!item.label}">Other</span>
+                                        <aura:set attribute="else">
+                                                <span class="slds-truncate" title="{!item.label}">{!item.label}</span>
+                                        </aura:set>
+                                    </aura:if>
+                                    
+                                    </a>
+                                </li>
+                        </aura:iteration>
+
+                    </ul>
+                    </nav>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout> 
+</aura:component>

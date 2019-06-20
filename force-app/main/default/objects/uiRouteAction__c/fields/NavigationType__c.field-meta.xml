@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NavigationType__c</fullName>
+    <description>The Type of Navigation from component</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Type of Navigation from component</inlineHelpText>
+    <label>Navigation Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>WebPage</fullName>
+                <default>true</default>
+                <label>Web Page</label>
+            </value>
+            <value>
+                <fullName>ListView</fullName>
+                <default>false</default>
+                <label>List View</label>
+            </value>
+            <value>
+                <fullName>RecordHome</fullName>
+                <default>false</default>
+                <label>Record Home</label>
+            </value>
+            <value>
+                <fullName>LightningPage</fullName>
+                <default>false</default>
+                <label>Lightning Page</label>
+            </value>
+            <value>
+                <fullName>RelatedList</fullName>
+                <default>false</default>
+                <label>Related List</label>
+            </value>
+            <value>
+                <fullName>RecordPage</fullName>
+                <default>false</default>
+                <label>Record Page</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

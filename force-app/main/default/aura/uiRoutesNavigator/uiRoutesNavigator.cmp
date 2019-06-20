@@ -1,0 +1,288 @@
+<aura:component controller="UIActionRoutesController" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global" >
+<!-- Standard parameters based on Record Page -->
+<aura:attribute name="recordId"  type="String" access="public" />
+<aura:attribute name="sObjectName"  type="String" access="public" />
+ <!-- Component UI Design Input -->
+ <aura:attribute name="sortOrder"  type="String" access="global" default="DESC"/>
+ <aura:attribute name="fromOrder"  type="Integer" access="global" default="0"/>
+ <aura:attribute name="toOrder"  type="Integer" access="global" default="10"/>
+ <aura:attribute name="routeFilterString"  type="String" access="public"/>
+
+ <aura:attribute name="isAdmin"  type="Boolean" default="false" access="global" />
+ <aura:attribute name="isShaded"  type="Boolean" default="false" access="global" />
+ <aura:attribute name="isCompact"  type="Boolean" default="false" access="global" />
+ <aura:attribute name="navStyle"  type="String" default="VERTICAL" access="global" />
+ <aura:attribute name="visibleRoutes"  type="Integer" access="global" default="2"/>
+ <!-- Server output -->
+ <aura:attribute name="routeSObjectName" type="String" access="private" default="uiRouteAction__c"/>
+ <aura:attribute name="groupRoutesList"  type="List" access="public"/>
+  <!-- Runtime variables -->
+ <aura:attribute name="selectedRouteId"  type="String" access="public" />
+ <aura:attribute name="selectedRoute"  type="Object" access="public" />
+ <aura:attribute name="showSpinner"  type="Boolean" default="true" access="public" />
+<!-- Handlers -->
+ <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+ <!-- Events -->
+ <aura:registerEvent name="routeClickEvent" type="c:uiRouteClickEvent"/>
+ <lightning:navigation aura:id="navigationService" />
+
+ <div aura:id="errorMsg" id="errorMsg"></div>
+ 
+ <aura:if isTrue="{!v.showSpinner}">
+      <div class="slds-grid slds-grid_frame">
+        <lightning:spinner variant="base" size="medium" aura:id="mySpinner" alternativeText="Retrieving Routes..."/>
+        </div>
+<aura:set attribute="else">
+ <aura:if isTrue="{!v.navStyle == 'VERTICAL'}">
+ <lightning:layout verticalAlign="center"  multipleRows="true" >
+		<lightning:layoutItem class="{! v.isShaded ? 'slds-theme_shade slds-p-vertical_x-small' : 'slds-theme_default slds-p-vertical_x-small' }" largeDeviceSize="12"  mediumDeviceSize="12"  padding="horizontal-small"  size="12"  smallDeviceSize="12" >
+		
+        <div class="slds-grid slds-text-align_center slds-grid_align-end">
+                <lightning:input aura:id="adminSwitch" type="toggle" checked="{!v.isAdmin}"/>  
+        </div>
+		<!-- Vertical NavBar -->
+		<lightning:verticalNavigation selectedItem="{!v.selectedRouteId}" shaded="{!v.isShaded}" compact="{!v.isCompact}" onselect="{!c.onSelectRouteAction}">
+				<aura:if isTrue="{!v.isAdmin}">
+                       
+					<lightning:verticalNavigationSection label="Admin">
+						<lightning:verticalNavigationItemIcon
+						label="New"
+						name="New"
+                        iconName="utility:add" />
+                        <lightning:verticalNavigationItemIcon
+						label="Refresh"
+						name="Refresh"
+						iconName="utility:refresh" />
+					</lightning:verticalNavigationSection>
+				</aura:if>
+			<aura:if isTrue="{!v.groupRoutesList.length >0 }">
+			<aura:iteration indexVar="groupindex"  items="{!v.groupRoutesList}"  var="group" >
+					<lightning:verticalNavigationSection label="{!group.groupName }">
+							
+						<aura:iteration indexVar="routeIndex"  items="{!group.routes}"  var="action" end="{!v.visibleRoutes}">
+                                <aura:if isTrue="{!action.Id != null }">
+                                    <div class="slds-grid slds-grid_align-space">
+                                        <lightning:verticalNavigationItemIcon
+                                                        label="{#action.Label__c}"
+                                                        name="{#action.Id}"
+                                                        iconName="{#action.LightningIcon__c}" 
+                                                        class="{!v.isAdmin ? 'slds-size_10-of-12':'slds-size_12-of-12'}"/>
+                                                        
+                                    <aura:if isTrue="{!and(v.isAdmin,v.selectedRouteId == action.Id)}">
+                                        <div class="slds-size_2-of-12">
+                                            <a onclick="{!c.onEditRoute}" data-index="{!v.selectedRouteId}" class="slds-align_absolute-center">
+                                                    <lightning:icon iconName="utility:edit" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                                                    <span class="slds-assistive-text">Edit</span>
+                                                </a> 
+                                        </div>
+                                    </aura:if>
+                                    </div>
+                                </aura:if>
+                        </aura:iteration>
+                        <aura:if isTrue="{! group.routes.length > v.visibleRoutes}">
+                                <lightning:verticalNavigationOverflow title="More" >
+                                    <aura:iteration indexVar="otherRouteIndex" items="{!group.routes}"  var="action" start="{!v.visibleRoutes}">
+                                            <aura:if isTrue="{!action.Id != null}">
+                                                <div class="slds-grid slds-grid_align-space">
+                                                    <lightning:verticalNavigationItemIcon
+                                                                        label="{#action.Label__c}"
+                                                                        name="{#action.Id}"
+                                                                        iconName="{#action.LightningIcon__c}"
+                                                                        class="{!v.isAdmin ? 'slds-size_10-of-12':'slds-size_12-of-12'}"/>
+
+                                                    <aura:if isTrue="{!and(v.isAdmin,v.selectedRouteId == action.Id)}">
+                                                            <div class="slds-size_2-of-12">
+                                                                <a onclick="{!c.onEditRoute}" data-index="{!v.selectedRouteId}" class="slds-align_absolute-center">
+                                                                        <lightning:icon iconName="utility:edit" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                                                                        <span class="slds-assistive-text">Edit</span>
+                                                                    </a> 
+                                                            </div>
+                                                        </aura:if>
+                                                </div>    
+                                            </aura:if>
+                                    </aura:iteration>
+                                </lightning:verticalNavigationOverflow>                  
+                        </aura:if>	
+
+				</lightning:verticalNavigationSection>	
+			</aura:iteration>
+			</aura:if>	
+		</lightning:verticalNavigation>
+
+
+
+</lightning:layoutItem>
+</lightning:layout>
+
+</aura:if>
+<!-- HORIZONTAL Global Navigation -->
+<aura:if isTrue="{!v.navStyle == 'HORIZONTAL'}">
+  
+        <div class="{! v.isShaded ? 'slds-context-bar slds-theme_shade' : 'slds-context-bar slds-theme_default' }">
+                <div class="slds-context-bar__icon-action">
+                        <button class="slds-button slds-icon-waffle_container slds-context-bar__button" onclick="{!c.doSwitchAdmin}">
+                          <span class="slds-icon-waffle">
+                            <span class="slds-r1"></span>
+                            <span class="slds-r2"></span>
+                            <span class="slds-r3"></span>
+                            <span class="slds-r4"></span>
+                            <span class="slds-r5"></span>
+                            <span class="slds-r6"></span>
+                            <span class="slds-r7"></span>
+                            <span class="slds-r8"></span>
+                            <span class="slds-r9"></span>
+                          </span>
+                          <span class="slds-assistive-text">Switch to Admin</span>
+                        </button>
+                </div>
+        <nav class="slds-context-bar__secondary" role="navigation">      
+        <ul class="slds-grid">
+                <aura:if isTrue="{!v.isAdmin}">
+                        <li class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_hover">
+                                <a href="javascript:void(0);" class="slds-context-bar__label-action" title="Admin">
+                                        <span class="slds-truncate" title="Admin">Admin</span>
+                                </a>
+                                <div class="slds-context-bar__icon-action slds-p-left_none">
+                                        <button class="slds-button slds-button_icon slds-button_icon slds-context-bar__button" aria-haspopup="true" title="Open menu item submenu">
+                                        <lightning:buttonIcon iconName="utility:down"  size="small" variant="bare" alternativeText="View More" /> 
+                                        <span class="slds-assistive-text">Open menu item submenu</span>
+                                        </button>
+                                </div>
+                                <div class="slds-dropdown slds-dropdown_right">
+                                        <ul class="slds-dropdown__list" role="menu">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                                <a onclick="{!c.onSelectRouteAction}" data-index="New" class="slds-align_absolute-center">
+                                                        <span class="slds-truncate slds-p-horizontal_small" title="New">New</span>
+                                                        <lightning:icon iconName="utility:add" size="x-small" alternativeText="New"/>
+                                                </a> 
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                                <a onclick="{!c.doInit}" data-index="Refresh" class="slds-align_absolute-center">
+                                                        <span class="slds-truncate slds-p-horizontal_small" title="Refresh">Refresh</span>
+                                                        <lightning:icon iconName="utility:refresh" size="x-small" alternativeText="Refresh"/>
+                                                </a> 
+                                        </li>
+                                        </ul>
+                                </div>
+                        </li>
+                        
+                </aura:if>
+        <!-- Large Screen -->
+        <div class="slds-grid slds-show_small">
+                <aura:iteration indexVar="groupIndex"  items="{!v.groupRoutesList}"  var="group" >
+                <li class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_hover">
+                      <a href="javascript:void(0);" class="slds-context-bar__label-action" title="{#group.groupName}">
+                        <span class="slds-truncate" title="{#group.groupName }">{#group.groupName}</span>
+                      </a>
+                      <div class="slds-context-bar__icon-action slds-p-left_none">
+                        <button class="slds-button slds-button_icon slds-button_icon slds-context-bar__button" aria-haspopup="true" title="Open menu item submenu">
+                        <lightning:buttonIcon iconName="utility:down"  size="small" variant="bare" alternativeText="View More" /> 
+                          <span class="slds-assistive-text">Open menu item submenu</span>
+                        </button>
+                      </div>
+                      <div class="slds-dropdown slds-dropdown_right">
+                        <ul class="slds-dropdown__list" role="menu">
+                                 <aura:iteration indexVar="routeIndex"  items="{!group.routes}"  var="action">
+                                <li class="slds-dropdown__item" role="presentation">
+                                <a data-index="{!action.Id}" role="menuitem" tabindex="-1" onclick="{!c.onSelectRouteAction}">
+                                        <span class="slds-truncate slds-p-horizontal_small"  aura:id="{#action.Id}" title="{#action.Label__c}">{#action.Label__c}</span>
+                                        <aura:if isTrue="{!v.isAdmin}">
+                                                        <a onclick="{!c.onEditRoute}" data-index="{!action.Id}" class="slds-align_absolute-center">
+                                                                <lightning:icon iconName="utility:edit" size="x-small" alternativeText="icon"/>
+                                                                <span class="slds-assistive-text">Edit</span>
+                                                        </a> 
+                                                <aura:set attribute="else">
+                                                        <lightning:icon size="x-small" iconName="{#action.LightningIcon__c}" alternativeText="{#action.Label__c}" />
+                                                </aura:set>
+                                        </aura:if>  
+                                </a>
+                                </li>
+                                </aura:iteration>
+                        </ul>
+                       </div>
+                </li>
+                </aura:iteration>
+        </div>
+        <!-- Responsive Small Screen -->
+        <div class="slds-grid slds-hide_small">
+                <li class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_hover">
+                        <a href="javascript:void(0);" class="slds-context-bar__label-action" title="More">
+                                <span class="slds-truncate" title="More"> More </span>
+                        </a>
+                        <div class="slds-context-bar__icon-action slds-p-left_none">
+                                <button class="slds-button slds-button_icon slds-button_icon slds-context-bar__button" aria-haspopup="true" title="Open menu item submenu">
+                                <lightning:buttonIcon iconName="utility:down"  size="small" variant="bare" alternativeText="View More" /> 
+                                        <span class="slds-assistive-text">Open menu item submenu</span>
+                                </button>
+                        </div>
+                       <div class="slds-dropdown slds-dropdown_left">
+                        <ul class="slds-dropdown__list" role="menu">
+                                <aura:iteration indexVar="groupindex"  items="{!v.groupRoutesList}"  var="group" >
+                                        <div class="slds-text-title_caps slds-text-align_center slds-p-vertical_xx-small" >{!group.groupName}</div>
+                                        <aura:iteration indexVar="routeIndex"  items="{!group.routes}"  var="action">   
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                        <a data-index="{!action.Id}" role="menuitem" tabindex="-1" onclick="{!c.onSelectRouteAction}">
+                                                        <span class="slds-truncate slds-p-horizontal_small"  aura:id="{#action.Id}" title="{#action.Label__c}">{#action.Label__c}</span>
+                                                        
+                                                        <aura:if isTrue="{!v.isAdmin}">
+                                                                        <a onclick="{!c.onEditRoute}" data-index="{!action.Id}" class="slds-align_absolute-center">
+                                                                                <lightning:icon iconName="utility:edit" size="x-small" alternativeText="icon"/>
+                                                                                <span class="slds-assistive-text">Edit</span>
+                                                                        </a> 
+                                                                <aura:set attribute="else">
+                                                                        <lightning:icon size="x-small" iconName="{#action.LightningIcon__c}" alternativeText="{#action.Label__c}" />
+                                                                </aura:set>
+                                                        </aura:if>  
+                                                        </a>
+                                                </li>
+                                        </aura:iteration>
+                                </aura:iteration>
+                        </ul>
+                        </div>
+                </li> 
+        </div>     
+                  
+        </ul>
+        </nav>
+       </div>
+
+</aura:if>
+
+<aura:if isTrue="{!v.navStyle == 'MagicWand'}">
+          
+        <lightning:buttonMenu menuAlignment="right" aura:id="menu" iconName="utility:magicwand" alternativeText="Show menu" onselect="{! c.handleSelectAction }">
+                        <aura:iteration indexVar="groupindex"  items="{!v.groupRoutesList}"  var="group" >
+                                        <div class="slds-text-title_caps slds-p-around_x-small" >{!group.groupName}</div>
+                                        <aura:iteration indexVar="routeIndex"  items="{!group.routes}"  var="action">
+                                                        <lightning:menuItem aura:id="menuItems" label="{#action.Label__c}" value="{#action.Id}" iconName="{#action.LightningIcon__c}"/>
+                                        </aura:iteration>
+                        </aura:iteration>
+
+        </lightning:buttonMenu>
+</aura:if>
+
+<aura:if isTrue="{!v.navStyle == 'buttonGroup'}">
+<aura:iteration indexVar="groupindex"  items="{!v.groupRoutesList}"  var="group" >
+                <!-- Group -->
+                <div class="slds-text-title_caps" >{!group.groupName}</div>
+                <lightning:buttonGroup class="slds-align_absolute-center slds-m-vertical_x-small">
+                <!-- Routes -->
+                <aura:iteration indexVar="routeIndex"  items="{!group.routes}"  var="action">
+                <lightning:buttonIcon iconName="{#action.LightningIcon__c}" alternativeText="{#action.Label__c}" name="{#action.Id}" onclick="{! c.handleSelectAction }"/>
+                </aura:iteration>
+                <!-- Other Routes -->
+                <aura:if isTrue="{! group.routes.length > v.visibleRoutes}">          
+                <lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" class="slds-button_last" onselect="{! c.handleSelectAction }">
+                        <aura:iteration indexVar="otherRouteIndex" items="{!group.routes}"  var="action" start="{!v.visibleRoutes}">
+                                <lightning:menuItem iconName="{#action.LightningIcon__c}" label="{#action.Label__c}" value="item3" />
+                        </aura:iteration>
+                </lightning:buttonMenu>
+                </aura:if>
+                </lightning:buttonGroup>
+</aura:iteration>
+</aura:if>
+
+</aura:set>
+</aura:if>
+
+</aura:component>	

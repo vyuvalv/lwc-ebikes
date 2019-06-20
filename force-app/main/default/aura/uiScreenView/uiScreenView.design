@@ -1,0 +1,6 @@
+<design:component label="Screen View">
+        <design:attribute name="uiScreenId" datasource="apex://ScreenRecordPicklist" label="Default Screen" description="Which Screen to use as default"/>
+        <design:attribute name="isAdmin"  label="Is Admin ?" />
+        <design:attribute name="pageHeight"  label="Height" />
+        <design:attribute name="screenTitle"  label="Screen Title" />
+</design:component>

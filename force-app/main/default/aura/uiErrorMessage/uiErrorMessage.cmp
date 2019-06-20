@@ -1,0 +1,15 @@
+<aura:component>
+        <aura:attribute name="title"  type="String" access="public" />
+        <aura:attribute name="message"  type="String" access="public" />
+        <aura:attribute name="severity"  type="String" access="public" />
+        <aura:attribute name="iconVariant"  type="String" access="public" />
+        <aura:attribute name="iconName"  type="String" access="public" default="utility:priority" />
+        <aura:attribute name="closable"  type="Boolean" access="public" />
+      
+        <ui:message title="{!v.title}" severity="{!v.severity}" closable="{!v.closable}">
+            <div class="slds-grid slds-align_absolute-center slds-p-around_medium">
+                <lightning:icon iconName="{!v.iconName}" size="medium" variant="{!v.iconVariant}"/> 
+            </div>
+                <ui:outputText value="{!v.message}"/>	
+        </ui:message>
+</aura:component>	

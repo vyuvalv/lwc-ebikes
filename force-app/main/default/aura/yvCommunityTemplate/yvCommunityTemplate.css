@@ -1,0 +1,86 @@
+/* Menu tool bar settings */
+.THIS .menu-settings {
+    border-bottom: 3px solid  t( colorBorder  );
+}
+.THIS.custom-tool-bar {
+    padding-top:10px;
+    padding-bottom:10px;
+    background-color: t( colorBackgroundButtonBrand );
+}
+.THIS .partial-bar {
+    margin-top:5px;
+}
+/* Footer */
+.THIS.custom-footer {
+    border-top: 3px solid  t( colorBorder  );
+}
+
+.THIS .forceCommunityGlobalNavigation .slds-list__item a {
+    font-size: 1rem;
+}
+/* Navigation increase */
+.THIS .comm-navigation .comm-navigation__list > .slds-list__item > .slds-is-active {
+     background-color: t( colorBackgroundButtonDefaultHover  ) !important;
+     border-bottom: 3px t( colorBorderBrand  ) solid;
+}
+.THIS .comm-navigation .comm-navigation__list > .slds-list__item:hover {
+     background-color: t( colorBackgroundButtonDefaultHover  ) !important;
+}
+.THIS .forceCommunityGlobalNavigation .slds-list_horizontal>.slds-list__item>a:hover {
+    border-bottom: 3px t( colorBorderBrand  ) solid;
+}
+/* Profile settings */
+.THIS .profileName {
+    overflow: initial !important;
+    margin: 0.3rem!important;
+}
+.THIS .profileMenuRegion {
+    direction: rtl;
+}
+/* images settings*/
+.THIS .logoContainerMenu {
+    background-image: t('url(' + brandLogoImage  + ')');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 15px;
+    position: relative;
+    bottom: 15px;
+    margin-top: 10px;
+}
+@media (max-width: 480px) {
+    .THIS .logoContainerMenu {
+        width: 8em;
+        height: 3rem;
+    }
+    .THIS .menu-settings {
+        height: 2.6rem !important;
+    }
+    .THIS.custom-tool-bar {
+        height: 3.2rem;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .THIS .logoContainerMenu {
+        width: 10em;
+        height: 3rem;
+    }
+    .THIS .menu-settings {
+        height: 3.7rem !important;
+    }
+    .THIS.custom-tool-bar {
+        height: 3.5rem;
+    }
+}
+@media (min-width: 768px) {
+    .THIS .logoContainerMenu {
+        width: 12em;
+        height: 4rem;
+    }
+     .THIS .menu-settings {
+        height: 4.5rem !important;
+    }
+    .THIS.custom-tool-bar {
+        height: 4.2rem;
+    }
+}

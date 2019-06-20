@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ParentScreenId__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Parent screen record Id</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Parent screen record Id</inlineHelpText>
+    <label>Parent Screen</label>
+    <referenceTo>uiScreen__c</referenceTo>
+    <relationshipLabel>UI Sections</relationshipLabel>
+    <relationshipName>Sections</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

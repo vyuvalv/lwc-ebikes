@@ -1,0 +1,18 @@
+[
+    {
+        "sobject": "uiScreen__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "ui-uiScreen__cs.json"
+        ]
+    },
+    {
+        "sobject": "uiSection__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "ui-uiSection__cs.json"
+        ]
+    }
+]

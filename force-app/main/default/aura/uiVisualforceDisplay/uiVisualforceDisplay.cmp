@@ -1,0 +1,15 @@
+<aura:component >
+    
+    <aura:attribute name="pageName" type="String" access="public"/>
+    <aura:attribute name="pageHeight" type="Integer" access="public"/>
+
+    <aura:attribute name="srcURL" type="String" access="public"/>
+
+    <aura:attribute name="vfHost" type="String" default="energy-java-4691-dev-ed--c.cs86.visual.force.com" access="public" />
+    <aura:attribute name="lexHost" type="String" default="https://energy-java-4691-dev-ed.lightning.force.com" access="public"/>
+  
+
+<div class="slds-grid">
+    <iframe aura:id="vfFrame" src="{!'https://' + v.vfHost + '/apex/'+ v.pageName}" height="{!v.pageHeight + 'px'}" class="view-frame"/>
+</div>
+</aura:component>	

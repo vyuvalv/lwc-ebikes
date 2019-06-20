@@ -1,0 +1,291 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef1"
+            },
+            "Name": "ShowRelationshipProcess",
+            "Order__c": 1010,
+            "ContextIdField__c": "Id",
+            "Label__c": "Show Relationship Information",
+            "Group__c": "Details",
+            "LightningIcon__c": "action:view_relationship",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef2"
+            },
+            "Name": "ChatterAction",
+            "Order__c": 3010,
+            "ContextIdField__c": "Id",
+            "Label__c": "Chatter Action",
+            "Group__c": "Standard",
+            "LightningIcon__c": "standard:data_integration_hub",
+            "Mode__c": "view",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef3"
+            },
+            "Name": "NavToAccountList",
+            "Order__c": 4001,
+            "ContextIdField__c": "Id",
+            "Label__c": "Account ListView",
+            "Group__c": "Navigation",
+            "LightningIcon__c": "standard:account",
+            "NavigationType__c": "ListView",
+            "FilterName__c": "Recent",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": true,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef4"
+            },
+            "Name": "2-AccountDetail",
+            "Order__c": 1002,
+            "ContextIdField__c": "Id",
+            "Label__c": "Account Detail (Fields)",
+            "Group__c": "Details",
+            "LightningIcon__c": "action:new_contact",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef5"
+            },
+            "Name": "IntegrationAction",
+            "Order__c": 2007,
+            "ContextIdField__c": "Id",
+            "Label__c": "Integration Action",
+            "Group__c": "Custom",
+            "LightningIcon__c": "action:question_post_action",
+            "NavigationType__c": "WebPage",
+            "FilterName__c": "Recent",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef6"
+            },
+            "Name": "RelatedAttachments",
+            "Order__c": 4004,
+            "ContextIdField__c": "Id",
+            "Label__c": "Related Attachments",
+            "Group__c": "Navigation",
+            "LightningIcon__c": "standard:contact",
+            "NavigationType__c": "RelatedList",
+            "RelationshipApiName__c": "CombinedAttachments",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": true,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef7"
+            },
+            "Name": "AccountEdit",
+            "Order__c": 3002,
+            "ContextIdField__c": "Id",
+            "Label__c": "Edit Account",
+            "Group__c": "Actions",
+            "LightningIcon__c": "action:edit",
+            "NavigationType__c": "RecordPage",
+            "Mode__c": "edit",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": true,
+            "MergedParameters__c": "%Id%",
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef8"
+            },
+            "Name": "Google Search",
+            "Order__c": 4007,
+            "ContextIdField__c": "Id",
+            "Label__c": "Google Search",
+            "Group__c": "Web Pages",
+            "LightningIcon__c": "action:google_news",
+            "NavigationType__c": "WebPage",
+            "Mode__c": "view",
+            "IsNavigation__c": true,
+            "TargetURL__c": "http://www.google.com",
+            "MergedParameters__c": "?q=%Name%",
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef9"
+            },
+            "Name": "connectionTree",
+            "Order__c": 2009,
+            "ContextIdField__c": "Id",
+            "Label__c": "Connections",
+            "Group__c": "Custom",
+            "LightningIcon__c": "action:new_group",
+            "NavigationType__c": "WebPage",
+            "FilterName__c": "Recent",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef10"
+            },
+            "Name": "ShowListViews",
+            "Order__c": 1012,
+            "ContextIdField__c": "Id",
+            "Label__c": "Show List Views",
+            "Group__c": "Details",
+            "LightningIcon__c": "action:manage_perm_sets",
+            "Mode__c": "view",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef11"
+            },
+            "Name": "DashboardVF",
+            "Order__c": 2001,
+            "ContextIdField__c": "Id",
+            "Label__c": "VF Dashboard",
+            "Group__c": "Visualforce Pages",
+            "LightningIcon__c": "action:share_file",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": false,
+            "MergedParameters__c": "{\r\n \"sObjectName\":\"Account\",\r\n \"recordId\":\"%Id%\",\r\n\"fieldNamesString\":\"Name,Type\",\r\n\"mode\":\"view\",\r\n\"header\":\"Hello\"\r\n}",
+            "Active__c": true,
+            "PageName__c": "uiProcessTabs"
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef12"
+            },
+            "Name": "RelatedContact",
+            "Order__c": 4015,
+            "ContextIdField__c": "Id",
+            "Label__c": "Related Contacts",
+            "Group__c": "Navigation",
+            "LightningIcon__c": "standard:contact",
+            "NavigationType__c": "RelatedList",
+            "RelationshipApiName__c": "Contacts",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": true,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef13"
+            },
+            "Name": "ContactRecordHome",
+            "Order__c": 4006,
+            "ContextIdField__c": "Id",
+            "Label__c": "Contact TAB",
+            "Group__c": "Navigation",
+            "LightningIcon__c": "standard:event",
+            "NavigationType__c": "RecordHome",
+            "Mode__c": "view",
+            "ObjectApiName__c": "Contact",
+            "IsNavigation__c": true,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef14"
+            },
+            "Name": "AccountClone",
+            "Order__c": 3001,
+            "ContextIdField__c": "Id",
+            "Label__c": "Clone Account",
+            "Group__c": "Actions",
+            "LightningIcon__c": "action:clone",
+            "NavigationType__c": "RecordPage",
+            "Mode__c": "clone",
+            "ObjectApiName__c": "Account",
+            "IsNavigation__c": true,
+            "MergedParameters__c": "%Id%",
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef15"
+            },
+            "Name": "EditFieldsComponent",
+            "Order__c": 1004,
+            "ContextIdField__c": "Id",
+            "Label__c": "Edit Account Detail",
+            "Group__c": "Details",
+            "LightningIcon__c": "action:new_case",
+            "Mode__c": "view",
+            "IsNavigation__c": false,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef16"
+            },
+            "Name": "RouteListView",
+            "Order__c": 1010,
+            "Label__c": "Route List View",
+            "Group__c": "Quick Links",
+            "LightningIcon__c": "standard:calibration",
+            "NavigationType__c": "ListView",
+            "FilterName__c": "Admin",
+            "Mode__c": "view",
+            "ObjectApiName__c": "uiRouteAction__c",
+            "IsNavigation__c": true,
+            "Active__c": true
+        },
+        {
+            "attributes": {
+                "type": "uiRouteAction__c",
+                "referenceId": "uiRouteAction__cRef17"
+            },
+            "Name": "Home",
+            "Order__c": 4008,
+            "Label__c": "Home",
+            "Group__c": "Lightning Pages",
+            "LightningIcon__c": "standard:home",
+            "NavigationType__c": "LightningPage",
+            "Mode__c": "view",
+            "IsNavigation__c": true,
+            "Active__c": true,
+            "PageName__c": "home"
+        }
+    ]
+}
