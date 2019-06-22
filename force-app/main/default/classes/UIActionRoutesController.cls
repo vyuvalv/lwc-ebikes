@@ -11,7 +11,7 @@ public with sharing class UIActionRoutesController {
         @Description: get all fields from a Fieldset Name and contextId 
     **/
     @AuraEnabled(Cacheable=true)
-    public static String getGroupedRoutesList( Id contextId, String contextObject, String extraWhereClause,String sortOrder )  {
+    public static String getGroupedRoutesList( String contextId, String contextObject, String extraWhereClause,String sortOrder )  {
         Set<String> groupNames = new Set<String>();
         String routeWhereClause = routeStaticFilterClause;
         if(String.isNotBlank(extraWhereClause)) {
@@ -23,30 +23,35 @@ public with sharing class UIActionRoutesController {
         List<Sobject> updatedRoutesList = new List<Sobject>();
         for(Sobject route:routesList) {
             String URLParams = (String)route.get('MergedParameters__c');
+
+            if(contextId !='home'){
             String contextField = (String)route.get('ContextIdField__c');
             //call Merged ContextId Method
-            if(contextField == 'Id' || String.isBlank(contextField)) {
-                route.put('ContextIdField__c',contextId);
-            }
-            else {
-                 try {
-                    String returnedContext = getContextId(contextField,contextObject,contextId);
-                    route.put('ContextIdField__c',returnedContext);
+                if(contextField == 'Id' || String.isBlank(contextField)) {
+                    route.put('ContextIdField__c',contextId);
                 }
-                catch(Exception e) {
-                      throw new AuraHandledException( 'Wrong Field ' + e.getMessage() ); 
+                else {
+                    try {
+                        String returnedContext = getContextId(contextField,contextObject,contextId);
+                        route.put('ContextIdField__c',returnedContext);
+                    }
+                    catch(Exception e) {
+                        throw new AuraHandledException( 'Wrong Field ' + e.getMessage() ); 
+                    }
                 }
-            }
+           
+            
             //call Merged URL Method
             if(String.isNotBlank(URLParams)){
             String MergedURLParams = UIUtils.getMergedURLParameters(URLParams,contextId);
             route.put('MergedParameters__c',MergedURLParams);
             }
+            }
             String currentGroup = (String)route.get(groupingFieldName);
             groupNames.add(currentGroup);
             updatedRoutesList.add(route);
         }
-    
+        
         List<Map<String,Object>> groupedRoutesList = new List<Map<String,Object>> ();
         for(String  groupName: groupNames)  {
           Map<String,Object> groupObject = new Map<String,Object>();

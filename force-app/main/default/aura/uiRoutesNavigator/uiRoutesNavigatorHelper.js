@@ -3,9 +3,15 @@
         let filterClause = component.get('v.routeFilterString');
         if(filterClause == null || filterClause == undefined)
              filterClause = 'Order__c >' + component.get('v.fromOrder') + ' AND ' + 'Order__c <' +component.get('v.toOrder');
+         let contextId = component.get('v.recordId');
+         console.log('contextId ' + contextId);
+         if(!contextId) {
+            contextId = 'home';
+         }
+        console.log('contextId 2 ' + contextId);
         var action = component.get("c.getGroupedRoutesList");
         action.setParams({
-            'contextId': component.get('v.recordId'),
+            'contextId': contextId,
             'contextObject':component.get('v.sObjectName'),
             'extraWhereClause':filterClause,
             'sortOrder':component.get('v.sortOrder')

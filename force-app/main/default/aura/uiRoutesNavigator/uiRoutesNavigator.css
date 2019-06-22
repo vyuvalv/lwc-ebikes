@@ -1,5 +1,5 @@
-.THIS {
-    
+.THIS .direction-switch {
+    direction: rtl;
 }
 /* .THIS .fade-out-small{
     width:100%;

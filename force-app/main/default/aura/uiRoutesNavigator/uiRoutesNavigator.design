@@ -1,5 +1,7 @@
 <design:component  label="Navigator">
+        
     <design:attribute name="isAdmin"  label="Is Admin ?" />
+    <design:attribute name="isRTL"  label="Right To Left ?" />
     <design:attribute name="isShaded"  label="Shaded" />
     <design:attribute name="isCompact"  label="Compact" />
     <design:attribute name="navStyle"  label="Navbar Style" datasource="VERTICAL,HORIZONTAL"/>

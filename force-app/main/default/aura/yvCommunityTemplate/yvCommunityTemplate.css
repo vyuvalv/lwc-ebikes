@@ -5,7 +5,7 @@
 .THIS.custom-tool-bar {
     padding-top:10px;
     padding-bottom:10px;
-    background-color: t( colorBackgroundButtonBrand );
+  /*  background-color: t( colorBackgroundButtonBrand ); */
 }
 .THIS .partial-bar {
     margin-top:5px;

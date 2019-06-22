@@ -8,6 +8,7 @@
  <aura:attribute name="toOrder"  type="Integer" access="global" default="10"/>
  <aura:attribute name="routeFilterString"  type="String" access="public"/>
 
+ <aura:attribute name="isRTL"  type="Boolean" default="false" access="global" />
  <aura:attribute name="isAdmin"  type="Boolean" default="false" access="global" />
  <aura:attribute name="isShaded"  type="Boolean" default="false" access="global" />
  <aura:attribute name="isCompact"  type="Boolean" default="false" access="global" />
@@ -25,16 +26,16 @@
  <!-- Events -->
  <aura:registerEvent name="routeClickEvent" type="c:uiRouteClickEvent"/>
  <lightning:navigation aura:id="navigationService" />
-
+ <div class="main-container">
  <div aura:id="errorMsg" id="errorMsg"></div>
- 
+
  <aura:if isTrue="{!v.showSpinner}">
       <div class="slds-grid slds-grid_frame">
         <lightning:spinner variant="base" size="medium" aura:id="mySpinner" alternativeText="Retrieving Routes..."/>
         </div>
 <aura:set attribute="else">
  <aura:if isTrue="{!v.navStyle == 'VERTICAL'}">
- <lightning:layout verticalAlign="center"  multipleRows="true" >
+ <lightning:layout verticalAlign="center"  multipleRows="true" class="{! v.isRTL ? 'direction-switch' : '' }">
 		<lightning:layoutItem class="{! v.isShaded ? 'slds-theme_shade slds-p-vertical_x-small' : 'slds-theme_default slds-p-vertical_x-small' }" largeDeviceSize="12"  mediumDeviceSize="12"  padding="horizontal-small"  size="12"  smallDeviceSize="12" >
 		
         <div class="slds-grid slds-text-align_center slds-grid_align-end">
@@ -44,11 +45,11 @@
 		<lightning:verticalNavigation selectedItem="{!v.selectedRouteId}" shaded="{!v.isShaded}" compact="{!v.isCompact}" onselect="{!c.onSelectRouteAction}">
 				<aura:if isTrue="{!v.isAdmin}">
                        
-					<lightning:verticalNavigationSection label="Admin">
+					<lightning:verticalNavigationSection label=" Admin ">
 						<lightning:verticalNavigationItemIcon
 						label="New"
 						name="New"
-                        iconName="utility:add" />
+                                                iconName="utility:add" />
                         <lightning:verticalNavigationItemIcon
 						label="Refresh"
 						name="Refresh"
@@ -60,22 +61,22 @@
 					<lightning:verticalNavigationSection label="{!group.groupName }">
 							
 						<aura:iteration indexVar="routeIndex"  items="{!group.routes}"  var="action" end="{!v.visibleRoutes}">
-                                <aura:if isTrue="{!action.Id != null }">
-                                    <div class="slds-grid slds-grid_align-space">
-                                        <lightning:verticalNavigationItemIcon
-                                                        label="{#action.Label__c}"
-                                                        name="{#action.Id}"
-                                                        iconName="{#action.LightningIcon__c}" 
-                                                        class="{!v.isAdmin ? 'slds-size_10-of-12':'slds-size_12-of-12'}"/>
-                                                        
-                                    <aura:if isTrue="{!and(v.isAdmin,v.selectedRouteId == action.Id)}">
-                                        <div class="slds-size_2-of-12">
-                                            <a onclick="{!c.onEditRoute}" data-index="{!v.selectedRouteId}" class="slds-align_absolute-center">
-                                                    <lightning:icon iconName="utility:edit" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
-                                                    <span class="slds-assistive-text">Edit</span>
-                                                </a> 
-                                        </div>
-                                    </aura:if>
+                                                        <aura:if isTrue="{!action.Id != null }">
+                                                        <div class="slds-grid">
+                                                                <lightning:verticalNavigationItemIcon
+                                                                                label="{#action.Label__c}"
+                                                                                name="{#action.Id}"
+                                                                                iconName="{#action.LightningIcon__c}" 
+                                                                                class="{!v.isAdmin ? 'slds-size_10-of-12':'slds-size_12-of-12'}"/>
+                                                                                
+                                                        <aura:if isTrue="{!and(v.isAdmin,v.selectedRouteId == action.Id)}">
+                                                                <div class="slds-size_2-of-12">
+                                                                <a onclick="{!c.onEditRoute}" data-index="{!v.selectedRouteId}" class="slds-align_absolute-center">
+                                                                        <lightning:icon iconName="utility:edit" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                                                                        <span class="slds-assistive-text">Edit</span>
+                                                                        </a> 
+                                                                </div>
+                                                        </aura:if>
                                     </div>
                                 </aura:if>
                         </aura:iteration>
@@ -284,5 +285,5 @@
 
 </aura:set>
 </aura:if>
-
+</div>
 </aura:component>	
